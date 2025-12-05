@@ -1,0 +1,84 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "Project"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "description": {
+      "type": "text"
+    },
+    "fullDescription": {
+      "type": "blocks"
+    },
+    "location": {
+      "type": "string"
+    },
+    "client": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "contractValue": {
+      "type": "string"
+    },
+    "startingPoint": {
+      "type": "text"
+    },
+    "endingPoint": {
+      "type": "text"
+    },
+    "projectStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Active ",
+        "Completed"
+      ]
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "gridImage": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "projects"
+    }
+  }
+}
