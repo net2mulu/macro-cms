@@ -27,6 +27,9 @@ RUN pnpm install --frozen-lockfile
 # Copy rest of the application
 COPY . .
 
+# Build the admin panel (required for production)
+RUN pnpm run build
+
 # Change ownership to node user
 RUN chown -R node:node /opt/app
 USER node
@@ -34,4 +37,4 @@ USER node
 ENV PATH="/opt/app/node_modules/.bin:${PATH}"
 
 EXPOSE 1337
-CMD ["pnpm", "run", "develop"]
+CMD ["pnpm", "run", "start"]

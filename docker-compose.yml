@@ -1,12 +1,10 @@
-version: "3"
-
 services:
   strapi:
     container_name: strapi
     build: .
     image: strapi:latest
     restart: unless-stopped
-    env_file: docker.env
+    env_file: .env
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
       DATABASE_HOST: strapiDB
@@ -19,12 +17,7 @@ services:
       APP_KEYS: ${APP_KEYS}
       NODE_ENV: ${NODE_ENV}
     volumes:
-      - ./config:/opt/app/config
-      - ./src:/opt/app/src
-      - ./package.json:/opt/app/package.json
-      - ./pnpm-lock.yaml:/opt/app/pnpm-lock.yaml
-      - ./public/uploads:/opt/app/public/uploads
-      - node_modules:/opt/app/node_modules
+      - strapi-uploads:/opt/app/public/uploads
     ports:
       - "1337:1337"
     networks:
@@ -37,7 +30,7 @@ services:
     container_name: strapiDB
     platform: linux/amd64
     restart: unless-stopped
-    env_file: docker.env
+    env_file: .env
     image: postgres:16.0-alpine
     environment:
       POSTGRES_USER: ${DATABASE_USERNAME}
@@ -57,7 +50,7 @@ services:
 
 volumes:
   strapi-data:
-  node_modules:
+  strapi-uploads:
 
 networks:
   strapi:
