@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_work_work_experiences",
+  "info": {
+    "displayName": "Work Experience",
+    "icon": "command"
+  },
+  "options": {},
+  "attributes": {
+    "jobTitle": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "experienceYears": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}

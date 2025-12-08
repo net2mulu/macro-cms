@@ -530,6 +530,90 @@ export interface ApiTagTag extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
+  collectionName: 'team_members';
+  info: {
+    displayName: 'Team Member';
+    pluralName: 'team-members';
+    singularName: 'team-member';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    experience: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::team-member.team-member'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    position: Schema.Attribute.String;
+    profilePicture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    qualification: Schema.Attribute.Text;
+    slug: Schema.Attribute.UID<'name'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiVacancyApplicationVacancyApplication
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'vacancy_applications';
+  info: {
+    displayName: 'VacancyApplication';
+    pluralName: 'vacancy-applications';
+    singularName: 'vacancy-application';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dateOfBirth: Schema.Attribute.Date;
+    educationBackground: Schema.Attribute.Component<
+      'education.education-detail',
+      true
+    >;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    fullName: Schema.Attribute.String & Schema.Attribute.Required;
+    gender: Schema.Attribute.Enumeration<['male', 'female']>;
+    jobTitleAppliedFor: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::vacancy-application.vacancy-application'
+    > &
+      Schema.Attribute.Private;
+    nationality: Schema.Attribute.String & Schema.Attribute.Required;
+    phoneNumber: Schema.Attribute.String & Schema.Attribute.Required;
+    placeOfBirth: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    references: Schema.Attribute.Component<'contact.contact-reference', true>;
+    shortCourseTraining: Schema.Attribute.Component<
+      'training.training-course',
+      true
+    >;
+    subCity: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    woreda: Schema.Attribute.String;
+    workHistory: Schema.Attribute.Component<'work.work-experience', true>;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1043,6 +1127,8 @@ declare module '@strapi/strapi' {
       'api::category.category': ApiCategoryCategory;
       'api::project.project': ApiProjectProject;
       'api::tag.tag': ApiTagTag;
+      'api::team-member.team-member': ApiTeamMemberTeamMember;
+      'api::vacancy-application.vacancy-application': ApiVacancyApplicationVacancyApplication;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

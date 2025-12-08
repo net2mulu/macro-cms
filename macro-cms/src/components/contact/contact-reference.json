@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_contact_contact_references",
+  "info": {
+    "displayName": "Contact Reference",
+    "icon": "envelop"
+  },
+  "options": {},
+  "attributes": {
+    "referenceName": {
+      "type": "string"
+    },
+    "referenceTitle": {
+      "type": "string"
+    },
+    "referencePhoneNumber": {
+      "type": "string"
+    },
+    "referenceEmail": {
+      "type": "email"
+    }
+  },
+  "config": {}
+}

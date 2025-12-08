@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_education_education_details",
+  "info": {
+    "displayName": "Education Detail",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "degreeCertificate": {
+      "type": "string"
+    },
+    "institutionName": {
+      "type": "string"
+    },
+    "graduationYear": {
+      "type": "date"
+    }
+  },
+  "config": {}
+}

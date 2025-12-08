@@ -1,0 +1,74 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vacancy_applications",
+  "info": {
+    "singularName": "vacancy-application",
+    "pluralName": "vacancy-applications",
+    "displayName": "VacancyApplication"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "jobTitleAppliedFor": {
+      "type": "string",
+      "required": true
+    },
+    "fullName": {
+      "type": "string",
+      "required": true
+    },
+    "dateOfBirth": {
+      "type": "date"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "male",
+        "female"
+      ]
+    },
+    "placeOfBirth": {
+      "type": "string"
+    },
+    "nationality": {
+      "type": "string",
+      "required": true
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "subCity": {
+      "type": "string"
+    },
+    "woreda": {
+      "type": "string"
+    },
+    "educationBackground": {
+      "type": "component",
+      "component": "education.education-detail",
+      "repeatable": true
+    },
+    "shortCourseTraining": {
+      "type": "component",
+      "component": "training.training-course",
+      "repeatable": true
+    },
+    "workHistory": {
+      "type": "component",
+      "component": "work.work-experience",
+      "repeatable": true
+    },
+    "references": {
+      "type": "component",
+      "component": "contact.contact-reference",
+      "repeatable": true
+    }
+  }
+}
