@@ -1,0 +1,15 @@
+node_modules
+.pnpm-store
+.cache
+.git
+Dockerfile
+docker-compose.yml
+README.md
+COOLIFY_DEPLOYMENT.md
+public/uploads
+*.log
+tmp
+build
+dist
+
+
