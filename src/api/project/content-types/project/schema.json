@@ -22,7 +22,7 @@
       "type": "text"
     },
     "fullDescription": {
-      "type": "blocks"
+      "type": "richtext"
     },
     "location": {
       "type": "string"

@@ -11,32 +11,54 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "jobTitleAppliedFor": {
+    "vacancy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::vacancy.vacancy",
+      "inversedBy": "applications",
+      "required": true
+    },
+    "full_name": {
       "type": "string",
       "required": true
     },
-    "fullName": {
-      "type": "string",
-      "required": true
-    },
-    "dateOfBirth": {
+    "birth_date": {
       "type": "date"
     },
-    "gender": {
+    "sex": {
       "type": "enumeration",
       "enum": [
         "male",
-        "female"
+        "female",
+        "other"
       ]
     },
-    "placeOfBirth": {
+    "place_of_birth": {
       "type": "string"
     },
     "nationality": {
       "type": "string",
       "required": true
     },
-    "phoneNumber": {
+    "education_background": {
+      "type": "text"
+    },
+    "short_courses": {
+      "type": "text"
+    },
+    "work_history": {
+      "type": "text"
+    },
+    "current_address": {
+      "type": "text"
+    },
+    "sub_city": {
+      "type": "string"
+    },
+    "woreda": {
+      "type": "string"
+    },
+    "phone_number": {
       "type": "string",
       "required": true
     },
@@ -44,31 +66,14 @@
       "type": "email",
       "required": true
     },
-    "subCity": {
+    "reference_1": {
       "type": "string"
     },
-    "woreda": {
+    "reference_2": {
       "type": "string"
     },
-    "educationBackground": {
-      "type": "component",
-      "component": "education.education-detail",
-      "repeatable": true
-    },
-    "shortCourseTraining": {
-      "type": "component",
-      "component": "training.training-course",
-      "repeatable": true
-    },
-    "workHistory": {
-      "type": "component",
-      "component": "work.work-experience",
-      "repeatable": true
-    },
-    "references": {
-      "type": "component",
-      "component": "contact.contact-reference",
-      "repeatable": true
+    "reference_3": {
+      "type": "string"
     }
   }
 }

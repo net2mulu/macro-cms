@@ -479,7 +479,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     date: Schema.Attribute.String;
     description: Schema.Attribute.Text;
     endingPoint: Schema.Attribute.Text;
-    fullDescription: Schema.Attribute.Blocks;
+    fullDescription: Schema.Attribute.RichText;
     gridImage: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -566,6 +566,48 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiVacancyVacancy extends Struct.CollectionTypeSchema {
+  collectionName: 'vacancies';
+  info: {
+    displayName: 'Vacancy';
+    pluralName: 'vacancies';
+    singularName: 'vacancy';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    applications: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::vacancy-application.vacancy-application'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    deadline: Schema.Attribute.Date;
+    description: Schema.Attribute.Blocks;
+    employment_type: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::vacancy.vacancy'
+    > &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.String & Schema.Attribute.Required;
+    posted_at: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    salary_max: Schema.Attribute.Decimal;
+    salary_min: Schema.Attribute.Decimal;
+    status: Schema.Attribute.Enumeration<['open', 'closed']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'open'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiVacancyApplicationVacancyApplication
   extends Struct.CollectionTypeSchema {
   collectionName: 'vacancy_applications';
@@ -581,15 +623,11 @@ export interface ApiVacancyApplicationVacancyApplication
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    dateOfBirth: Schema.Attribute.Date;
-    educationBackground: Schema.Attribute.Component<
-      'education.education-detail',
-      true
-    >;
+    birth_date: Schema.Attribute.Date;
+    current_address: Schema.Attribute.Text;
+    education_background: Schema.Attribute.Text;
     email: Schema.Attribute.Email & Schema.Attribute.Required;
-    fullName: Schema.Attribute.String & Schema.Attribute.Required;
-    gender: Schema.Attribute.Enumeration<['male', 'female']>;
-    jobTitleAppliedFor: Schema.Attribute.String & Schema.Attribute.Required;
+    full_name: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -597,20 +635,22 @@ export interface ApiVacancyApplicationVacancyApplication
     > &
       Schema.Attribute.Private;
     nationality: Schema.Attribute.String & Schema.Attribute.Required;
-    phoneNumber: Schema.Attribute.String & Schema.Attribute.Required;
-    placeOfBirth: Schema.Attribute.String;
+    phone_number: Schema.Attribute.String & Schema.Attribute.Required;
+    place_of_birth: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    references: Schema.Attribute.Component<'contact.contact-reference', true>;
-    shortCourseTraining: Schema.Attribute.Component<
-      'training.training-course',
-      true
-    >;
-    subCity: Schema.Attribute.String;
+    reference_1: Schema.Attribute.String;
+    reference_2: Schema.Attribute.String;
+    reference_3: Schema.Attribute.String;
+    sex: Schema.Attribute.Enumeration<['male', 'female', 'other']>;
+    short_courses: Schema.Attribute.Text;
+    sub_city: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    vacancy: Schema.Attribute.Relation<'manyToOne', 'api::vacancy.vacancy'> &
+      Schema.Attribute.Required;
     woreda: Schema.Attribute.String;
-    workHistory: Schema.Attribute.Component<'work.work-experience', true>;
+    work_history: Schema.Attribute.Text;
   };
 }
 
@@ -1128,6 +1168,7 @@ declare module '@strapi/strapi' {
       'api::project.project': ApiProjectProject;
       'api::tag.tag': ApiTagTag;
       'api::team-member.team-member': ApiTeamMemberTeamMember;
+      'api::vacancy.vacancy': ApiVacancyVacancy;
       'api::vacancy-application.vacancy-application': ApiVacancyApplicationVacancyApplication;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
