@@ -19,15 +19,15 @@
     "@strapi/plugin-users-permissions": "5.31.3",
     "@strapi/strapi": "5.31.3",
     "pg": "8.8.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "react-router-dom": "^6.0.0",
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "typescript": "^5"
   },
   "engines": {
