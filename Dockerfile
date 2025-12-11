@@ -41,8 +41,10 @@ FROM node:22-alpine
 # Runtime dependency for sharp/libvips
 RUN apk add --no-cache vips-dev
 
-# Install pnpm for runtime scripts
-RUN npm install -g pnpm
+# Install pnpm for runtime scripts and ensure uploads dir exists/writable
+RUN npm install -g pnpm \
+  && mkdir -p /opt/app/public/uploads \
+  && chown -R node:node /opt/app/public
 
 ENV NODE_ENV=production
 
