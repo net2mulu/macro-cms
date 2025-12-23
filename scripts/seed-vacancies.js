@@ -120,3 +120,6 @@ const vacancies = [
     await strapi.destroy();
   }
 })();
+
+
+

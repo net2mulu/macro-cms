@@ -31,14 +31,14 @@
     "salary_max": {
       "type": "decimal"
     },
-    "status": {
+    "job_status": {
       "type": "enumeration",
+      "required": true,
+      "default": "open",
       "enum": [
         "open",
         "closed"
-      ],
-      "default": "open",
-      "required": true
+      ]
     },
     "posted_at": {
       "type": "datetime"

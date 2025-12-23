@@ -15,8 +15,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::vacancy.vacancy",
-      "inversedBy": "applications",
-      "required": true
+      "inversedBy": "applications"
     },
     "full_name": {
       "type": "string",
